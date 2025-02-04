@@ -6,7 +6,7 @@ const sixRandomColors = [];
 const [userPass,setUserPass] = useState();
 const [wins,setwins] = useState(0);
 const [displayMessage,setDisplayMessage] = useState("");
-const [restart,setRestart] = useState(false)
+const [,setRestart] = useState(false)
 const [shake, setShake] = useState(false);
 
 function getSixColors(){
@@ -18,7 +18,6 @@ userPass!==3&&getSixColors()
 
 let showColor = sixRandomColors[Math.floor(Math.random()*6)]
 const displayColor =`rgb(${showColor[0]},${showColor[1]},${showColor[2]})`
-const showColorIndex = sixRandomColors.indexOf(showColor)
 
 
 function getIndexValue(id){
