@@ -40,9 +40,9 @@ function getIndexValue(id){
     setUserPass(false)
     getSixColors()
     setwins(prev=>{
-      return 0;
+      return prev;
     })
-    setDisplayMessage("Wrong, You Lost 😢")
+    setDisplayMessage("Wrong, Keep going")
     setTimeout(() => setDisplayMessage(""), 500);
     setShake(false);
     
