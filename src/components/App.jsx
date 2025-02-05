@@ -4,6 +4,7 @@ import "./styles.css";
 function App() {
 const sixRandomColors = [];
 const [userPass,setUserPass] = useState();
+const [colorSelected,setColorSelected] = useState(false)   //toggle the animation class
 const [wins,setwins] = useState(0);
 const [displayMessage,setDisplayMessage] = useState("");
 const [,setRestart] = useState(false)
@@ -21,6 +22,8 @@ const displayColor =`rgb(${showColor[0]},${showColor[1]},${showColor[2]})`
 
 
 function getIndexValue(id){
+  setColorSelected(true);
+  setTimeout(()=>setColorSelected(false),500);
 
   const showColorIndex = sixRandomColors.indexOf(showColor)
   if (id === showColorIndex){
@@ -42,10 +45,11 @@ function getIndexValue(id){
     setDisplayMessage("Wrong, You Lost 😢")
     setTimeout(() => setDisplayMessage(""), 500);
     setShake(false);
-
+    
   }
-
+  
   setTimeout(() => setShake(false), 500);
+  console.log(colorSelected)
 
 }
 
@@ -62,7 +66,7 @@ function getIndexValue(id){
       <header data-testid="gameInstructions" className="header">GUESS THE <span className="color-title">COLOR</span></header>
       
       <div className="scoreSection">
-        <div class="scoree">Score: <button className="score" data-testid="score">{wins}</button></div>
+        <div class="scoree">Score: <span className="score" data-testid="score">{wins}</span></div>
         <button onClick={restartAction} data-testid="newGameButton" >Reset</button>
       </div>
       
@@ -71,7 +75,11 @@ function getIndexValue(id){
         </div>
       </div>
       
-      <div className={shake ? "shake" : "loss"} data-testid="gameStatus">
+      <div className={colorSelected && shake ?
+       "shake" :
+       colorSelected && !shake?
+        "loss":
+        null} data-testid="gameStatus">
       <p className="status">{displayMessage}</p>
       </div>
       
